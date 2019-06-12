@@ -42,7 +42,7 @@ class Nodo{
   //ver el nodo en pantalla
   public void mostrar(){
     stroke(c);
-    strokeWeight(5);
+    strokeWeight(15);
     point(x, y);
     mostrado = true;
   }
