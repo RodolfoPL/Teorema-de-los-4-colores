@@ -14,6 +14,7 @@ class Nodo{
   public ArrayList<Nodo> vecinos;
   private int id;
   public boolean mostrado;
+  private String tarea;
   /*
     Constructor, asigna la posicion y el identificador dados, con un color negro por defecto que no se ha mostrado
   */
@@ -24,6 +25,17 @@ class Nodo{
     this.c = color(0, 0, 0);
     this.vecinos = new ArrayList<Nodo>();
     this.mostrado = false;
+    this.tarea = "";
+  }
+  
+  Nodo(float x, float y, int id, String tarea){
+    this.x = x;
+    this.y = y;
+    this.id = id;
+    this.c = color(0, 0, 0);
+    this.vecinos = new ArrayList<Nodo>();
+    this.mostrado = false;
+    this.tarea = tarea;
   }
   //colorea  al nodo
   public void setColor(color c){
@@ -41,9 +53,13 @@ class Nodo{
   }
   //ver el nodo en pantalla
   public void mostrar(){
+    if(tarea!= "")
     stroke(c);
     strokeWeight(15);
     point(x, y);
+    textSize(20);
+    fill(0);
+    text(tarea, x+20, y+20);
     mostrado = true;
   }
   

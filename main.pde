@@ -1,39 +1,30 @@
 Grafo g;
+String archivo[];
 void setup(){
-  size(800,500);
-  
+  size(800,800);
   g = new Grafo();
-  /*g.addNodo(new Nodo(100, 100, 1));  //0
-  g.addNodo(new Nodo(400, 100, 2));  //1
-  g.addNodo(new Nodo(250, 400, 3));  //2
-  g.addNodo(new Nodo(250, 200, 4));  //3
-
+  archivo = loadStrings("input.txt");
+  int noNodos = parseInt(archivo[0]);
+  for(int i=1; i<=noNodos; i++){
+     String aux[] = split(archivo[i], ",");  
+     float x = parseFloat(aux[1]);
+     float y = parseFloat(aux[2]);
+     int id = parseInt(aux[0]);
+     //solo puede ser con tareas o sin tareas
+     //sin tareas
+   //  g.addNodo(new Nodo(width - x, height-y, id));
+     //con tareas
+     String tarea = aux[3];     
+     g.addNodo(new Nodo(width - x, height-y, id, tarea));
+  }  
+  int noAristas=parseInt(archivo[noNodos+1]);
   
-  g.addArista(g.nodos.get(3),g.nodos.get(0));
-  g.addArista(g.nodos.get(3),g.nodos.get(1));
-  g.addArista(g.nodos.get(3),g.nodos.get(2));
-
-  g.addArista(g.nodos.get(1),g.nodos.get(0));
-  g.addArista(g.nodos.get(2),g.nodos.get(0));
-  
-  g.addArista(g.nodos.get(1),g.nodos.get(2));*/
-  
-  g.addNodo(new Nodo(400, 400, 1));  //0
-  g.addNodo(new Nodo(100, 200, 2));  //1
-  g.addNodo(new Nodo(400, 200, 3));  //2
-  g.addNodo(new Nodo(700, 200, 4));  //3
-  g.addNodo(new Nodo(400, 100, 4));  //4
-  
-  g.addArista(g.nodos.get(2),g.nodos.get(0));
-  g.addArista(g.nodos.get(2),g.nodos.get(1));
-  g.addArista(g.nodos.get(2),g.nodos.get(3));
-  g.addArista(g.nodos.get(2),g.nodos.get(4));
-    
-  g.addArista(g.nodos.get(0),g.nodos.get(1));
-  g.addArista(g.nodos.get(0),g.nodos.get(3));
-  
-  g.addArista(g.nodos.get(4),g.nodos.get(1));
-  g.addArista(g.nodos.get(4),g.nodos.get(3));
+  for(int i=1; i<=noAristas; i++){
+    String aux[] = split(archivo[i+noNodos+1], ",");
+    int n1 = parseInt(aux[0]);
+    int n2 = parseInt(aux[1]);
+    g.addArista(g.nodos.get(n1), g.nodos.get(n2));
+  }
   g.colorear();
 }
 
